@@ -1,46 +1,24 @@
 <h1>Frontend Doc</h1>
 
+Desenvolvi o frontend utilizando Next.js, Taliwind CSS e Chakra UI.
+[Necessário Node v16.8.0 ou superior]
 
 ## Parte 1 - Construindo as interfaces de autenticação. </br> 
-<strong>Styles/Layout</strong>
+
+A princípio iria utilizar React, mas quando fui utilizar o react-router acabei comparando com o roteamento do Next.js e observando grandes vantagens, não só no roteamento (com as rotas baseadas nos arquivos), como pelo fato de poder adotar SSR. Portanto, resolvi utilizar o Next.js para obter, também, uma boa performance e por consquência boa experiência do usuário. </br> 
 
 Comecei definindo quais seriam as formas de estilizar meu site de forma rápida e eficaz. Por isso escolhi utilizar os components do ChakraUI juntamente com a estilização do Tailwind CSS. </br> 
 
-<strong>Testes de Libs</strong> </br> 
-1- Instalação e Utilização da Lib Chakra UI </br>
-2- Instalação, Configuração e Utilização da Lib Tailwind CSS </br>
+</br> 
+
+<strong>Next Auth</strong> </br> 
+Escolhi essa biblioteca para construir um eficiente sistema de Autenticação no frontend, visto que essa lib irá cuidar da abstração da autenticação, com diversas funcionalidades de segurança nativas, além de ser simples de implementar e também por ter integração com o AWS Cognito. </br>
+
 </br>
 
+<strong>Login Component utilizando Tailwind Components</strong> </br> 
+Nesse momento opto por utilizar a biblioteca de components do Tailwind para obter um template de Login de forma otimizada. O meu propósito é o quanto antes implementar a aplicação toda funcionando, portanto, utilizo recursos que facilitam o trabalho. </br>
 
-
-<strong>Routers</strong> 
-
-Em seguida, criei todo o sistema de roteamento utilizando react router, para facilitar o desenvolvimento. </br>
-
-Rotas Públicas e Rotas Privadas </br> 
-</br>
-
-
-
-<strong>State Managment</strong>
-
-Agora estou criando o Gerenciamento de Estado Global da aplicação, para controlar o fluxo de autenticação e permitir que as rotas privadas sejam acessadas somente por um usuário logado e com um Token JWT válido</br>
-
-Criação do Context e Provider </br>
-</br>
-
-
-
-<strong>Authentication Test</strong>
-
-Agora construo as telas de login e cadastro (ainda sem estilização) para testar todo o fluxo.</br>
-</br>
-
-
-
-<strong>Interface development</strong>
-
-Agora finalizo a construção da tela de login e cadastro, portanto, restando apenas desenvolver o CRUD</br>
 </br>
 
 

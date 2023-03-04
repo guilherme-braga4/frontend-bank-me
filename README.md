@@ -16,7 +16,15 @@ Comecei definindo quais seriam as formas de estilizar meu site de forma rápida 
 <strong>Next Auth</strong> </br> 
 Escolhi essa biblioteca para construir um eficiente sistema de Autenticação no frontend no lado do servidor (SSR), visto que essa lib irá cuidar da abstração da autenticação, com diversas funcionalidades de segurança nativas, além de ser simples de implementar. </br>
 
-Por fim crio o layout de autenticação. </br>
+Agora crio e configuro meu provider de credenciais. </br>
+
+Em seguida adiciono o SessionProvider no root (app.tsx) para validar a autenticação de um user, bem como obter suas informações após o login. </br>
+
+Por fim crio o layout de autenticação (utilizando Formik para o form) e consumo a função de login através do provider. </br>
+
+Repito esse processo anterior para o cadastro. </br>
+
+Para finalizar o processo de autenticação apenas utilizo um validador de sessão (no lado do servidor) para redirecionar os usuários logados automaticamente para a page "home", bem como redirecionar usuários não autenticados para tela de login (protegendo a aplicação com rotas privadas). </br>
 
 </br>
 

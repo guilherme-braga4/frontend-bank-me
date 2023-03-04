@@ -1,15 +1,18 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: 'jwt'
+  },
   providers: [
     CredentialsProvider({
-      name: 'credentials',
+      type: 'credentials',
       credentials: {},
       async authorize(credentials, req) {
         console.log("As credenciais são.....", credentials)
 
-        const res = await fetch(`http://localhost:3001/api/auth/login`, {
+        const res = await fetch(process.env.API_URL + "login", {
           method: 'POST',
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" }
@@ -25,15 +28,21 @@ export const authOptions = {
       }
     })
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/auth/login',
-    signUp: '/auth/signup',
-    signOut: '/auth/signout',
+    // signUp: '/auth/signup',
+    // signOut: '/auth/signout',
   },
-  callbacks: {
-    jwt({ token }) {
-      return token;
-    },
+    callbacks: {
+      jwt: async ({ token, user }) => {
+        user && (token.user = user);
+        return token;
+      },
+      session: async ({ session, token }) => {
+        session.user = token.user; 
+        return session;
+      },
   },
 }
 

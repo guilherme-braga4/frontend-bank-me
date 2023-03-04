@@ -15,11 +15,18 @@ const Login = () => {
         setAuthState(old => ({ ...old, [e.target.id]: e.target.value }))
     }
 
-    const handleAuth = async () => {
-        console.log("authState", authState)
-        signIn("credencial", {
+    const handleAuth = async (e) => {
+        e.preventDefault()
+        await signIn("credentials", {
             ...authState,
             redirect: false
+        }).then(({ ok, error }) => {
+          if (ok) {
+              console.log('Login concluído', ok)
+              router.push("/");
+          } else {
+              console.log(error)
+          }
         })
     }
 

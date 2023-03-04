@@ -12,7 +12,13 @@ Comecei definindo quais seriam as formas de estilizar meu site de forma rápida 
 </br> 
 
 <strong>Next Auth</strong> </br> 
-Escolhi essa biblioteca para construir um eficiente sistema de Autenticação no frontend, visto que essa lib irá cuidar da abstração da autenticação, com diversas funcionalidades de segurança nativas, além de ser simples de implementar e também por ter integração com o AWS Cognito. </br>
+Escolhi essa biblioteca para construir um eficiente sistema de Autenticação no frontend no lado do servidor (SSR), visto que essa lib irá cuidar da abstração da autenticação, com diversas funcionalidades de segurança nativas, além de ser simples de implementar e também por ter integração com o AWS Cognito (o provider escolhido). </br>
+
+Visto que eu desejo realizar a persistência do usuário autenticado, eu criei novas migrations seguindo os models da documentação do Next Auth. </br>
+
+Após testar e validar a autenticação com Cognito, então adiciono o adapter do Prisma para então conseguir persistir as informações do Callback do Cognito dentro da minha instância SQLite. </br>
+
+Por fim crio o layout de autenticação. </br>
 
 </br>
 

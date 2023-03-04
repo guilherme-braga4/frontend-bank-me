@@ -1,26 +1,39 @@
 import NextAuth from "next-auth"
-import CognitoProvider from "next-auth/providers/cognito";
-import prisma from "../../../lib/prisma"
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions = {
-  adapter: PrismaAdapter(prisma),
   providers: [
-    CognitoProvider({
-      clientId: process.env.COGNITO_CLIENT_ID,
-      clientSecret: process.env.COGNITO_CLIENT_SECRET,
-      issuer: process.env.COGNITO_ISSUER,
+    CredentialsProvider({
+      name: 'credentials',
+      credentials: {},
+      async authorize(credentials, req) {
+        console.log("As credenciais são.....", credentials)
+
+        const res = await fetch(`http://localhost:3001/api/auth/login`, {
+          method: 'POST',
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" }
+        })
+        console.log('res', res)
+        const user = await res.json()
+  
+        if (res.ok && user) {
+          console.log('Usuário correto...', user)
+          return user
+        }
+        return null
+      }
     })
   ],
+  pages: {
+    signIn: '/auth/login',
+    signUp: '/auth/signup',
+    signOut: '/auth/signout',
+  },
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-        username: user.username,
-      },
-    }),
+    jwt({ token }) {
+      return token;
+    },
   },
 }
 

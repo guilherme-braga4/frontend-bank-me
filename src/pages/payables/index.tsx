@@ -1,7 +1,9 @@
+import DeleteModal from "@/components/deleteModal";
 import NavBar from "@/components/navBar";
 import { useEffect, useState } from "react";
 import { AiFillEdit, AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
 import { FaSort } from "react-icons/fa";
+import { RiDeleteBin2Line } from "react-icons/ri";
 import api from "../../services/api";
 
 interface IPayable {
@@ -13,6 +15,9 @@ interface IPayable {
 
 const PayablesTable = () => {
   const [payable, setPayable] = useState<IPayable[]>();
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false);
+  const [id, setId] = useState<string>();
 
   useEffect(() => {
     api
@@ -26,6 +31,12 @@ const PayablesTable = () => {
   return (
     <div className="min-h-full ">
       <NavBar active="payable" />
+      <DeleteModal
+        isVisible={openDeleteModal}
+        setIsVisible={setOpenDeleteModal}
+        id={id}
+        type={"payable"}
+      />
       <div className="relative overflow-x-auto  pt-10 pr-10 pl-10">
         <div className="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
           <button
@@ -93,6 +104,9 @@ const PayablesTable = () => {
               <th scope="col" className="px-6 py-3">
                 <span className="sr-only">Details</span>
               </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="sr-only">Delete</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -109,14 +123,30 @@ const PayablesTable = () => {
                 <td className="px-6 py-4">{item.id_assignor}</td>
 
                 <td className="px-6 py-4 text-right">
-                  <a href="#" className="text-blue-600 ">
+                  <button
+                    className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                    onClick={() => setOpenEditModal(true)}
+                  >
                     <AiFillEdit />
+                  </button>
+                </td>
+                <td className="px-6 py-4 ">
+                  <a href="#" className="text-blue-600 font-semibold">
+                    Detalhes
                   </a>
                 </td>
                 <td className="px-6 py-4 text-right">
-                  <a href="#" className="text-blue-600 ">
-                    Detalhes
-                  </a>
+                  <button
+                    className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                    onClick={() => {
+                      setId(item.id);
+                      setOpenDeleteModal(true);
+                    }}
+                  >
+                    <RiDeleteBin2Line />
+                  </button>
                 </td>
               </tr>
             ))}

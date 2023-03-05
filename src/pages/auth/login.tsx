@@ -1,34 +1,33 @@
-import React, { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 const Login = () => {
+  const router = useRouter();
+  const [authState, setAuthState] = useState({
+    email: "",
+    password: "",
+  });
 
-  const router =  useRouter()
-    const [authState, setAuthState] = useState({
-        email: '',
-        password: ''
-    })
+  const handleFieldChange = (e) => {
+    setAuthState((old) => ({ ...old, [e.target.id]: e.target.value }));
+  };
 
-    const handleFieldChange = (e) => {
-        setAuthState(old => ({ ...old, [e.target.id]: e.target.value }))
-    }
-
-    const handleAuth = async (e) => {
-        e.preventDefault()
-        await signIn("credentials", {
-            ...authState,
-            redirect: false
-        }).then(({ ok, error }) => {
-          if (ok) {
-              console.log('Login concluído', ok)
-              router.push("/");
-          } else {
-              console.log(error)
-          }
-        })
-    }
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    await signIn("credentials", {
+      ...authState,
+      redirect: false,
+    }).then(({ ok, error }) => {
+      if (ok) {
+        console.log("Login concluído", ok);
+        router.push("/");
+      } else {
+        console.log(error);
+      }
+    });
+  };
 
   return (
     <div className="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
@@ -38,7 +37,8 @@ const Login = () => {
             <a href="#">Aprove-me</a>
           </div>
           <p className="mt-6 font-normal text-center text-gray-300 md:mt-0">
-            Sejam bem vindos ao sistema que irá te permitir controlar seu mini banco!
+            Sejam bem vindos ao sistema que irá te permitir controlar seu mini
+            banco!
           </p>
           <p className="flex flex-col items-center justify-center mt-10 text-center">
             <span>Ainda não está inscrito?</span>
@@ -47,9 +47,13 @@ const Login = () => {
         </div>
         <div className="p-5 bg-white md:flex-1">
           <h3 className="my-4 text-2xl font-semibold text-gray-700">
-           Login Bankmers 🚀
+            Login Bankmers 🚀
           </h3>
-          <form action="#" className="flex flex-col space-y-5" onSubmit={handleAuth}>
+          <form
+            action="#"
+            className="flex flex-col space-y-5"
+            onSubmit={handleAuth}
+          >
             <div className="flex flex-col space-y-1">
               <label
                 htmlFor="email"
@@ -66,7 +70,7 @@ const Login = () => {
               />
             </div>
             <div className="flex flex-col space-y-1">
-            <label
+              <label
                 htmlFor="email"
                 className="text-sm font-semibold text-gray-500"
               >
@@ -92,7 +96,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

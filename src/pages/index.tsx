@@ -1,31 +1,29 @@
-import { useSession, getSession, signOut } from "next-auth/react"
-import Dashboard from './home/dashboard'
+import { getSession, useSession } from "next-auth/react";
+import Dashboard from "./home/dashboard";
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context)
+  const session = await getSession(context);
 
   if (!session) {
     return {
       redirect: {
         destination: "/auth/login",
-        permanent: false
-      }
-    }
+        permanent: false,
+      },
+    };
   }
 
   return {
     props: {
-      session
-    }
-  }
+      session,
+    },
+  };
 }
 
 export default function Home() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   if (session) {
-    return (
-      <Dashboard session={session}/>
-    )
+    return <Dashboard session={session} />;
   }
 }

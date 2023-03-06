@@ -1,9 +1,15 @@
-<h1>Frontend Doc</h1>
+<h1 align="center">
+  Aprova-me (Frontend)
+</h1>
 
-Desenvolvi o frontend utilizando Next.js, Taliwind CSS e Chakra UI. 
-[Necessário Node v16.8.0 ou superior] 
+</br>
+<h2> 🧑🏽‍💻 Documentação Complementar</h2>
+<p>Abaixo pode ser verificado o raciocínio para criar o layout/telas + consumo de api do frontend.</p>
 
 </br> 
+
+<strong>Desenvolvi o frontend utilizando Next.js + Typescript, Taliwind CSS e Chakra UI. </strong>
+[Necessário Node v16.8.0 ou superior] 
 
 ## Parte 1 - Construindo as interfaces de autenticação. </br> 
 
@@ -22,15 +28,20 @@ Em seguida adiciono o SessionProvider no root (app.tsx) para validar a autentica
 
 Por fim crio o layout de autenticação (utilizando Formik para o form) e consumo a função de login através do provider. </br>
 
-Repito esse processo anterior para o cadastro. </br>
-
 Para finalizar o processo de autenticação apenas utilizo um validador de sessão (no lado do servidor) para redirecionar os usuários logados automaticamente para a page "home", bem como redirecionar usuários não autenticados para tela de login (protegendo a aplicação com rotas privadas). </br>
 
 </br>
 
+## Parte 2 - Construindo o CRUD (payable e assignor). </br> 
+
+Utilizei TailwindCSS para fazer o desenvolvimento do grid e modal.
 
 
+## Parte 2.1 - Consumo de API. </br> 
 
+Utilizei a lib Axios.
+
+## Prints (Login, Dashboard e Modal). </br> 
 
 
 

@@ -44,8 +44,6 @@ const CreateModal = ({ isVisible, setIsVisible, type }: Props) => {
       (item) => item.name == assignorName,
     );
 
-    console.log(assignorSelected);
-
     if (type == "assignor") {
       api
         .post("/api/assignor", {

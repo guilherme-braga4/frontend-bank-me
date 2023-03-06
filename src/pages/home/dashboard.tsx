@@ -1,7 +1,6 @@
 import NavBar from "@/components/navBar";
 
 const Dashboard = ({ session }) => {
-  console.log("----------->", session.user.token);
   return (
     <div className="min-h-full">
       <NavBar />

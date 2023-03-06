@@ -10,18 +10,13 @@ interface Props {
 
 const DeleteModal = ({ isVisible, setIsVisible, id, type }: Props) => {
   function handleDelete() {
-    if (type == "assignor") {
-      api.delete(`/api/assignor/${id}`).catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-    } else {
-      api.delete(`/api/payable/${id}`).catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-    }
+    api.delete(`/api/${type}/${id}`).catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+    });
 
     setIsVisible(false);
   }
+
   return (
     <div>
       {isVisible ? (

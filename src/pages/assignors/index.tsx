@@ -1,9 +1,10 @@
-import EditModal from "@/components/editModal";
+import DeleteModal from "@/components/deleteModal";
 import NavBar from "@/components/navBar";
 import api from "@/services/api";
 import { useEffect, useState } from "react";
 import { AiFillEdit, AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
 import { FaSort } from "react-icons/fa";
+import { RiDeleteBin2Line } from "react-icons/ri";
 
 interface IAssignor {
   id: string;
@@ -15,7 +16,10 @@ interface IAssignor {
 
 const AssignorsTable = () => {
   const [assignor, setAssignor] = useState<IAssignor[]>();
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [id, setId] = useState<string>();
+
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false);
 
   useEffect(() => {
     api
@@ -24,12 +28,17 @@ const AssignorsTable = () => {
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-  }, []);
+  }, [openDeleteModal]);
 
   return (
     <div className="min-h-full ">
       <NavBar active="assignor" />
-      <EditModal isVisible={openModal} setIsVisible={setOpenModal} />
+      <DeleteModal
+        isVisible={openDeleteModal}
+        setIsVisible={setOpenDeleteModal}
+        id={id}
+        type={"assignor"}
+      />
       <div className="relative overflow-x-auto  pt-10 pr-10 pl-10">
         <div className="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
           <button
@@ -105,6 +114,9 @@ const AssignorsTable = () => {
               <th scope="col" className="px-6 py-3">
                 <span className="sr-only">Details</span>
               </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="sr-only">Delete</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -125,15 +137,27 @@ const AssignorsTable = () => {
                   <button
                     className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="button"
-                    onClick={() => setOpenModal(true)}
+                    onClick={() => setOpenEditModal(true)}
                   >
                     <AiFillEdit />
                   </button>
                 </td>
-                <td className="px-6 py-4 text-right">
-                  <a href="#" className="text-blue-600 ">
+                <td className="px-6 py-4 ">
+                  <a href="#" className="text-blue-600 font-semibold">
                     Detalhes
                   </a>
+                </td>
+                <td className="px-6 py-4 text-right">
+                  <button
+                    className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                    onClick={() => {
+                      setId(item.id);
+                      setOpenDeleteModal(true);
+                    }}
+                  >
+                    <RiDeleteBin2Line />
+                  </button>
                 </td>
               </tr>
             ))}

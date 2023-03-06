@@ -40,25 +40,3 @@ Utilizei TailwindCSS para fazer o desenvolvimento do grid e modal.
 ## Parte 2.1 - Consumo de API. </br> 
 
 Utilizei a lib Axios.
-
-## Prints (Login, Dashboard e Modal). </br> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

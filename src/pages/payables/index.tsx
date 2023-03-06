@@ -1,4 +1,7 @@
-import CreateModal from "@/components/createModal";
+import {
+  default as CreateModal,
+  default as EditModal,
+} from "@/components/createModal";
 import DeleteModal from "@/components/deleteModal";
 import NavBar from "@/components/navBar";
 import { useEffect, useState } from "react";
@@ -43,6 +46,11 @@ const PayablesTable = () => {
       <CreateModal
         isVisible={openCreateModal}
         setIsVisible={setOpenCreateModal}
+        type={"payable"}
+      />
+      <EditModal
+        isVisible={openEditModal}
+        setIsVisible={setOpenEditModal}
         type={"payable"}
       />
       <div className="relative overflow-x-auto  pt-10 pr-10 pl-10">

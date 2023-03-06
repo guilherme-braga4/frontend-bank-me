@@ -1,4 +1,6 @@
+import EditModal from "@/components/createModal";
 import DeleteModal from "@/components/deleteModal";
+import CreateModal from "@/components/editModal";
 import NavBar from "@/components/navBar";
 import api from "@/services/api";
 import { useEffect, useState } from "react";
@@ -20,6 +22,7 @@ const AssignorsTable = () => {
 
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
   const [openEditModal, setOpenEditModal] = useState<boolean>(false);
+  const [openCreateModal, setOpenCreateModal] = useState<boolean>(false);
 
   useEffect(() => {
     api
@@ -39,11 +42,22 @@ const AssignorsTable = () => {
         id={id}
         type={"assignor"}
       />
+      <CreateModal
+        isVisible={openCreateModal}
+        setIsVisible={setOpenCreateModal}
+        type={"assignor"}
+      />
+      <EditModal
+        isVisible={openEditModal}
+        setIsVisible={setOpenEditModal}
+        type={"assignor"}
+      />
       <div className="relative overflow-x-auto  pt-10 pr-10 pl-10">
         <div className="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
           <button
             className="inline-flex items-center text-white bg-sky-700 border border-gray-300 focus:outline-none hover:bg-sky-800 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             type="button"
+            onClick={() => setOpenCreateModal(true)}
           >
             Adicionar
             <AiOutlinePlus />

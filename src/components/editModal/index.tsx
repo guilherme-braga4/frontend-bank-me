@@ -19,7 +19,7 @@ interface Props {
   type: string;
 }
 
-const CreateModal = ({ isVisible, setIsVisible, type }: Props) => {
+const EditModal = ({ isVisible, setIsVisible, type }: Props) => {
   const [assignor, setAssignor] = useState<IAssignor[]>();
   const [value, setValue] = useState<string>();
   const [assignorName, setAssignorName] = useState<string>();
@@ -36,7 +36,7 @@ const CreateModal = ({ isVisible, setIsVisible, type }: Props) => {
       });
   }, []);
 
-  function handleCreate() {
+  function handleEdit() {
     var date = moment(emissionDate);
 
     //pegar o id so assignor selecionado no modal
@@ -82,7 +82,7 @@ const CreateModal = ({ isVisible, setIsVisible, type }: Props) => {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-lg font-semibold">
-                    Insira as informações do pagável
+                    Atualize as informações do pagável
                   </h3>
                   <button
                     className="pl-10 ml-auto border-0  float-right  leading-none font-semibold outline-none focus:outline-none"
@@ -175,10 +175,10 @@ const CreateModal = ({ isVisible, setIsVisible, type }: Props) => {
                     className="bg-green-600 text-white active:bg-green-800 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
-                      handleCreate();
+                      handleEdit();
                     }}
                   >
-                    Criar
+                    Salvar
                   </button>
                 </div>
               </div>
@@ -191,4 +191,4 @@ const CreateModal = ({ isVisible, setIsVisible, type }: Props) => {
   );
 };
 
-export default CreateModal;
+export default EditModal;

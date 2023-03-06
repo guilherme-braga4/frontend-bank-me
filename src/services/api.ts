@@ -8,7 +8,7 @@ api.interceptors.request.use(async (config) => {
   // const { data: session } = useSession();
 
   var token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJrQGJrLmNvbSIsInN1YiI6MywiaWF0IjoxNjc4MDUxOTEzLCJleHAiOjE2NzgwNTE5NzN9.X9X1aBfX97CqOvNmFpPeHIelU2Hl-0SvkMNPJE7p8X0";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJrQGJrLmNvbSIsInN1YiI6MywiaWF0IjoxNjc4MDU1MDk1LCJleHAiOjE2NzgwNTUxNTV9.LAM8osbT___mrapUeRyK3bxz1i1c_xI6fvSp14IexXU";
 
   if (token) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
